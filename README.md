@@ -10,7 +10,7 @@ Hardhat kit with constants & necessary packages for testing, deployment & verifi
 yarn
 ```
 
-## Deploying on networks other than ZK Sync
+#### Deploying on networks other than ZK Sync
 
 - Get your API Keys from your preferred RPC Provider. Fill in the `.env` file.
 - Edit the Contracts & the scripts file
@@ -21,7 +21,7 @@ hh compile
 hh deploy scripts/deploy.ts
 ```
 
-## Deploying on ZK Sync
+#### Deploying on ZK Sync
 
 - Edit the Contracts & the Deploy folder
 - In `hardhat.config.ts` file, uncomment the ZKSync imports and change the exports to `module.exports = getConfig("zksync", "0.8.4");`.
@@ -47,25 +47,25 @@ ZKSync
 
 ## Package Info
 
-### Contract Libraries
+#### Contract Libraries
 
 ```
 @openzeppelin/contracts @chainlink/contracts @aave/core-v3
 ```
 
-### Cryptographic Helper Libraries
+#### Cryptographic Helper Libraries
 
 ```
 keccak256 merkletreejs
 ```
 
-### Flashbot Libraries
+#### Flashbot Libraries
 
 ```
 @flashbots/ethers-provider-bundle
 ```
 
-### ZKSync Libraries
+#### ZKSync Libraries
 
 ```
 zksync-web3
@@ -74,7 +74,7 @@ zksync-web3
 @matterlabs/hardhat-zksync-chai-matchers
 ```
 
-### Testing
+#### Testing
 
 ```
 @nomicfoundation/hardhat-chai-matchers
@@ -84,13 +84,13 @@ chai
 @types/mocha
 ```
 
-### Verification
+#### Verification
 
 ```
 @nomiclabs/hardhat-etherscan
 ```
 
-### Essentials Packages
+#### Essentials Packages
 
 ```
 @nomicfoundation/hardhat-toolbox
@@ -106,7 +106,7 @@ typechain
 hardhat-shorthand
 ```
 
-### Typescript Support
+#### Typescript Support
 
 ```
 ts-node
