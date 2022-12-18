@@ -43,6 +43,8 @@ Optimism_goerli
 Arbitrum_goerli
 Fuji
 ZKSync
+Polygon Mainnet
+Ethereum Mainnet
 ```
 
 ## Package Info

@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config({ path: ".env" });
+require("@nomiclabs/hardhat-etherscan");
 
 // Un comment when using ZK Sync
 // require("@matterlabs/hardhat-zksync-deploy");
@@ -11,7 +12,9 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const POLYGON_MAINNET = process.env.POLYGON_MAINNET;
 const POLYGON_MUMBAI = process.env.POLYGON_MUMBAI;
+
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
 const ETHEREUM_MAINNET = process.env.ETHEREUM_MAINNET;
 const ETHEREUM_GOERLI = process.env.ETHEREUM_GOERLI;
@@ -29,9 +32,19 @@ function getConfig(network: string, solidity_version: string) {
     case "optimism_goerli":
     case "arbitrum_goerli":
     case "fuji":
+    case "polygon":
+    case "mainnet":
       const config = {
         solidity: { version: solidity_version },
         defaultNetwork: network,
+        etherscan: {
+          apiKey: {
+            [network]:
+              network == "mumbai" || network == "polygon"
+                ? POLYGONSCAN_API_KEY
+                : ETHERSCAN_API_KEY,
+          },
+        },
         networks: {
           mumbai: {
             url: POLYGON_MUMBAI,
@@ -63,6 +76,14 @@ function getConfig(network: string, solidity_version: string) {
           },
           fuji: {
             url: "https://api.avax-test.network/ext/bc/C/rpc",
+            accounts: [PRIVATE_KEY],
+          },
+          mainnet: {
+            url: ETHEREUM_MAINNET,
+            accounts: [PRIVATE_KEY],
+          },
+          polygon: {
+            url: POLYGON_MAINNET,
             accounts: [PRIVATE_KEY],
           },
         },
