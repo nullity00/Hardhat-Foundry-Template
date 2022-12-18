@@ -17,14 +17,13 @@ const ETHEREUM_MAINNET = process.env.ETHEREUM_MAINNET;
 const ETHEREUM_GOERLI = process.env.ETHEREUM_GOERLI;
 const ARBITRUM_GOERLI = process.env.ARBITRUM_GOERLI;
 
-module.exports = getConfig("fuji", "0.8.4");
+module.exports = getConfig("goerli", "0.8.4");
 
 function getConfig(network: string, solidity_version: string) {
   switch (network) {
     case "mumbai":
     case "goerli":
     case "sepolia":
-    case "goerli":
     case "litchi":
     case "wallaby":
     case "optimism_goerli":
