@@ -18,9 +18,14 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
 const ETHEREUM_MAINNET = process.env.ETHEREUM_MAINNET;
 const ETHEREUM_GOERLI = process.env.ETHEREUM_GOERLI;
-const ARBITRUM_GOERLI = process.env.ARBITRUM_GOERLI;
+const ETHEREUM_SEPOLIA = process.env.ETHEREUM_SEPOLIA;
 
-module.exports = getConfig("goerli", "0.8.4");
+const ARBITRUM_GOERLI = process.env.ARBITRUM_GOERLI;
+const OPTIMISM_GOERLI = process.env.OPTIMISM_GOERLI;
+
+const AVALANCHE_FUJI = process.env.AVALANCHE_FUJI;
+
+module.exports = getConfig("mumbai", "0.8.4");
 
 function getConfig(network: string, solidity_version: string) {
   switch (network) {
@@ -47,15 +52,15 @@ function getConfig(network: string, solidity_version: string) {
         },
         networks: {
           mumbai: {
-            url: POLYGON_MUMBAI,
+            url: POLYGON_MUMBAI || "https://matic-mumbai.chainstacklabs.com",
             accounts: [PRIVATE_KEY],
           },
           goerli: {
-            url: ETHEREUM_GOERLI,
+            url: ETHEREUM_GOERLI || "https://rpc.ankr.com/eth_goerli",
             accounts: [PRIVATE_KEY],
           },
           sepolia: {
-            url: "https://rpc.sepolia.org",
+            url: ETHEREUM_SEPOLIA || "https://rpc.sepolia.org",
             accounts: [PRIVATE_KEY],
           },
           litchi: {
@@ -67,23 +72,23 @@ function getConfig(network: string, solidity_version: string) {
             accounts: [PRIVATE_KEY],
           },
           optimism_goerli: {
-            url: "https://goerli.optimism.io/",
+            url: OPTIMISM_GOERLI || "https://goerli.optimism.io/",
             accounts: [PRIVATE_KEY],
           },
           arbitrum_goerli: {
-            url: ARBITRUM_GOERLI,
+            url: ARBITRUM_GOERLI || "https://goerli-rollup.arbitrum.io/rpc",
             accounts: [PRIVATE_KEY],
           },
           fuji: {
-            url: "https://api.avax-test.network/ext/bc/C/rpc",
+            url: AVALANCHE_FUJI || "https://api.avax-test.network/ext/bc/C/rpc",
             accounts: [PRIVATE_KEY],
           },
           mainnet: {
-            url: ETHEREUM_MAINNET,
+            url: ETHEREUM_MAINNET || "https://rpc.ankr.com/eth",
             accounts: [PRIVATE_KEY],
           },
           polygon: {
-            url: POLYGON_MAINNET,
+            url: POLYGON_MAINNET || "https://polygon-bor.publicnode.com",
             accounts: [PRIVATE_KEY],
           },
         },
@@ -96,7 +101,7 @@ function getConfig(network: string, solidity_version: string) {
         networks: {
           zksync: {
             url: "https://zksync2-testnet.zksync.dev",
-            ethNetwork: ETHEREUM_GOERLI,
+            ethNetwork: ETHEREUM_GOERLI || "https://rpc.ankr.com/eth_goerli",
             zksync: true,
           },
         },
