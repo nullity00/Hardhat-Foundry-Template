@@ -25,7 +25,7 @@ const OPTIMISM_GOERLI = process.env.OPTIMISM_GOERLI;
 
 const AVALANCHE_FUJI = process.env.AVALANCHE_FUJI;
 
-module.exports = getConfig("mumbai", "0.8.4");
+module.exports = getConfig("hardhat", "0.8.4");
 
 function getConfig(network: string, solidity_version: string) {
   switch (network) {
@@ -39,6 +39,7 @@ function getConfig(network: string, solidity_version: string) {
     case "fuji":
     case "polygon":
     case "mainnet":
+    case "hardhat":
       const config = {
         solidity: { version: solidity_version },
         defaultNetwork: network,
@@ -91,6 +92,9 @@ function getConfig(network: string, solidity_version: string) {
             url: POLYGON_MAINNET || "https://polygon-bor.publicnode.com",
             accounts: [PRIVATE_KEY],
           },
+          hardhat: {
+
+          }
         },
       };
       return config;
