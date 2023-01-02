@@ -55,6 +55,11 @@ Ethereum Mainnet
 @openzeppelin/contracts @chainlink/contracts @aave/core-v3
 ```
 
+### Deploying Proxy Contracts
+```
+@openzeppelin/hardhat-upgrades
+```
+
 #### Cryptographic Helper Libraries
 
 ```
