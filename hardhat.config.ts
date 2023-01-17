@@ -1,6 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config({ path: ".env" });
 require("@nomiclabs/hardhat-etherscan");
+require("@nomicfoundation/hardhat-foundry");
 
 // Un comment when using ZK Sync
 // require("@matterlabs/hardhat-zksync-deploy");
