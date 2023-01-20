@@ -1,4 +1,4 @@
-# Hardhat Super Kit
+# Hardhat Foundry Super Kit
 
 Hardhat kit with constants & necessary packages for testing, deployment & verification with support for over 10 EVM Chains.
 
@@ -37,12 +37,13 @@ hh deploy-zksync
 Mumbai
 Goerli
 Sepolia
-Litchi
-Wallaby
-Optimism_goerli
-Arbitrum_goerli
+Polygon ZKEVM - Mango
+Filecoin - Wallaby
+Filecoin - Hyperspace
+Optimism - goerli
+Arbitrum - goerli
 Fuji
-ZKSync
+ZKSync v2- Alpha
 Polygon Mainnet
 Ethereum Mainnet
 ```
@@ -70,6 +71,11 @@ keccak256 merkletreejs
 
 ```
 @flashbots/ethers-provider-bundle
+```
+
+#### Filecoin Libraries
+```
+@glif/filecoin-address @zondax/filecoin-solidity @zondax/filecoin-solidity-mock-apis
 ```
 
 #### ZKSync Libraries

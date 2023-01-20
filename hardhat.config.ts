@@ -33,7 +33,7 @@ function getConfig(network: string, solidity_version: string) {
     case "mumbai":
     case "goerli":
     case "sepolia":
-    case "litchi":
+    case "mango":
     case "wallaby":
     case "optimism_goerli":
     case "arbitrum_goerli":
@@ -41,6 +41,7 @@ function getConfig(network: string, solidity_version: string) {
     case "polygon":
     case "mainnet":
     case "hardhat":
+    case "hyperspace":
       const config = {
         solidity: { version: solidity_version },
         defaultNetwork: network,
@@ -65,12 +66,16 @@ function getConfig(network: string, solidity_version: string) {
             url: ETHEREUM_SEPOLIA || "https://rpc.sepolia.org",
             accounts: [PRIVATE_KEY],
           },
-          litchi: {
+          mango: {
             url: "https://rpc.public.zkevm-test.net",
             accounts: [PRIVATE_KEY],
           },
           wallaby: {
             url: "https://wallaby.node.glif.io/rpc/v0",
+            accounts: [PRIVATE_KEY],
+          },
+          hyperspace: {
+            url: "https://api.hyperspace.node.glif.io/rpc/v1",
             accounts: [PRIVATE_KEY],
           },
           optimism_goerli: {
@@ -93,9 +98,7 @@ function getConfig(network: string, solidity_version: string) {
             url: POLYGON_MAINNET || "https://polygon-bor.publicnode.com",
             accounts: [PRIVATE_KEY],
           },
-          hardhat: {
-
-          }
+          hardhat: {},
         },
       };
       return config;
