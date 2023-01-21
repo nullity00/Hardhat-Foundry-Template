@@ -1,7 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config({ path: ".env" });
 require("@nomiclabs/hardhat-etherscan");
-require("@nomicfoundation/hardhat-foundry");
+// require("@nomicfoundation/hardhat-foundry");
 
 // Un comment when using ZK Sync
 // require("@matterlabs/hardhat-zksync-deploy");
@@ -26,9 +26,9 @@ const OPTIMISM_GOERLI = process.env.OPTIMISM_GOERLI;
 
 const AVALANCHE_FUJI = process.env.AVALANCHE_FUJI;
 
-module.exports = getConfig("hardhat", "0.8.4");
+module.exports = getConfig("hyperspace", "0.8.17");
 
-function getConfig(network: string, solidity_version: string) {
+function getConfig(network, solidity_version) {
   switch (network) {
     case "mumbai":
     case "goerli":
@@ -77,6 +77,8 @@ function getConfig(network: string, solidity_version: string) {
           hyperspace: {
             url: "https://api.hyperspace.node.glif.io/rpc/v1",
             accounts: [PRIVATE_KEY],
+            chainId: 3141,
+            allowUnlimitedContractSize: true,
           },
           optimism_goerli: {
             url: OPTIMISM_GOERLI || "https://goerli.optimism.io/",
