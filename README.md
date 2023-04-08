@@ -7,6 +7,7 @@ Hardhat kit with constants & necessary packages for testing, deployment & verifi
 - Install the packages
 
 ```
+npm install --global hardhat-shorthand
 yarn
 ```
 
@@ -116,7 +117,6 @@ typechain
 @typechain/ethers-v5
 @ethersproject/abi
 @ethersproject/providers
-hardhat-shorthand
 ```
 
 #### Typescript Support
