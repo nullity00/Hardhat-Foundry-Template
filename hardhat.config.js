@@ -9,6 +9,8 @@ require("@nomiclabs/hardhat-etherscan");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
+const BLOCK_HEIGHT = 15969633;
+
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const POLYGON_MAINNET = process.env.POLYGON_MAINNET;
@@ -26,7 +28,7 @@ const OPTIMISM_GOERLI = process.env.OPTIMISM_GOERLI;
 
 const AVALANCHE_FUJI = process.env.AVALANCHE_FUJI;
 
-module.exports = getConfig("hyperspace", "0.8.17");
+module.exports = getConfig("hardhat", "0.8.17");
 
 function getConfig(network, solidity_version) {
   switch (network) {
@@ -100,7 +102,12 @@ function getConfig(network, solidity_version) {
             url: POLYGON_MAINNET || "https://polygon-bor.publicnode.com",
             accounts: [PRIVATE_KEY],
           },
-          hardhat: {},
+          hardhat: {
+            forking: {
+              url: ETHEREUM_MAINNET,
+              blockNumber: BLOCK_HEIGHT,
+            },
+          },
         },
       };
       return config;
