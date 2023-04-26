@@ -40,6 +40,7 @@
     "@zondax/filecoin-solidity": "^0.4.0-beta.1",
     "@zondax/filecoin-solidity-mock-api": "^0.0.0",
     "dotenv": "^16.0.3",
+    "hardhat-tracer": "^2.2.2",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.3.9"
   }
