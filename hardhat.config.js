@@ -3,6 +3,7 @@ require("dotenv").config({ path: ".env" });
 require("@nomiclabs/hardhat-etherscan");
 require("hardhat-tracer");
 require("hardhat-preprocessor");
+const fs = require("fs");
 
 // Un comment when using ZK Sync
 // require("@matterlabs/hardhat-zksync-deploy");
@@ -31,7 +32,7 @@ const ARBITRUM_GOERLI = process.env.ARBITRUM_GOERLI;
 const OPTIMISM_GOERLI = process.env.OPTIMISM_GOERLI;
 const AVALANCHE_FUJI = process.env.AVALANCHE_FUJI;
 
-module.exports = getConfig("hardhat", "^0.8.13");
+module.exports = getConfig("hardhat", "0.8.17");
 
 function getConfig(network, solidity_version) {
   switch (network) {
