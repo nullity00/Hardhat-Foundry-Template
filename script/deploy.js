@@ -2,8 +2,8 @@ const hre = require("hardhat");
 
 async function deploy() {
 
-  const Counter = await hre.ethers.getContractFactory("Greeter");
-  const counter = await Counter.deploy("Hello !");
+  const Counter = await hre.ethers.getContractFactory("Counter");
+  const counter = await Counter.deploy();
 
   await counter.deployed();
 
