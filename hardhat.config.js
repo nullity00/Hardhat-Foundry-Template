@@ -2,7 +2,7 @@ require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config({ path: ".env" });
 require("@nomiclabs/hardhat-etherscan");
 require("hardhat-tracer");
-// require("@nomicfoundation/hardhat-foundry");
+require("hardhat-preprocessor");
 
 // Un comment when using ZK Sync
 // require("@matterlabs/hardhat-zksync-deploy");
@@ -10,26 +10,28 @@ require("hardhat-tracer");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
+function getRemappings() {
+  return fs
+    .readFileSync("remappings.txt", "utf8")
+    .split("\n")
+    .filter(Boolean) // remove empty lines
+    .map((line) => line.trim().split("="));
+}
+
 const BLOCK_HEIGHT = 15969633;
-
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
-
 const POLYGON_MAINNET = process.env.POLYGON_MAINNET;
 const POLYGON_MUMBAI = process.env.POLYGON_MUMBAI;
-
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
-
 const ETHEREUM_MAINNET = process.env.ETHEREUM_MAINNET;
 const ETHEREUM_GOERLI = process.env.ETHEREUM_GOERLI;
 const ETHEREUM_SEPOLIA = process.env.ETHEREUM_SEPOLIA;
-
 const ARBITRUM_GOERLI = process.env.ARBITRUM_GOERLI;
 const OPTIMISM_GOERLI = process.env.OPTIMISM_GOERLI;
-
 const AVALANCHE_FUJI = process.env.AVALANCHE_FUJI;
 
-module.exports = getConfig("hardhat", "0.8.17");
+module.exports = getConfig("hardhat", "^0.8.13");
 
 function getConfig(network, solidity_version) {
   switch (network) {
@@ -109,6 +111,25 @@ function getConfig(network, solidity_version) {
               blockNumber: BLOCK_HEIGHT,
             },
           },
+        },
+        paths: {
+          sources: "./src", // Use ./src rather than ./contracts as Hardhat expects
+          cache: "./cache_hardhat", // Use a different cache for Hardhat than Foundry
+        },
+        // This fully resolves paths for imports in the ./lib directory for Hardhat
+        preprocess: {
+          eachLine: (hre) => ({
+            transform: (line) => {
+              if (line.match(/^\s*import /i)) {
+                getRemappings().forEach(([find, replace]) => {
+                  if (line.match(find)) {
+                    line = line.replace(find, replace);
+                  }
+                });
+              }
+              return line;
+            },
+          }),
         },
       };
       return config;
